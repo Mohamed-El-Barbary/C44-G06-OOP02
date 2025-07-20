@@ -58,6 +58,43 @@ namespace Assignment
 
     #endregion
 
+    #region Q03
+    // 3. Create a struct called "Person" with properties "Name" and "Age".
+    // Write a C# program that takes details of 3 persons as input
+    // from the user and displays the name and age of the oldest person.
+    struct Person03
+    {
+
+        public int Age { get; set; }
+        public string? Name { get; set; }
+
+        public Person03(int age, string? name)
+        {
+            this.Age = age;
+            this.Name = name;
+        }
+
+        public Person03 GetOldest(Person03[] person)
+        {
+            Person03 oldPerson = person[0];
+            if (person?.Length is not null)
+            {
+                for (int i = 0; i < person.Length; i++)
+                {
+                    if (person[i].Age > oldPerson.Age)
+                    {
+                        oldPerson = person[i];
+                    }
+                }
+            }
+            return oldPerson;
+        }
+
+    }
+
+
+
+    #endregion
     class Program
     {
         static void Main(string[] args)
@@ -68,36 +105,36 @@ namespace Assignment
             // Create an array of three "Person" objects and populate it with data.Then,
             // write a C# program to display the details of all the persons in the array.
 
-           Person[] persons = new Person[3];
-           
-           Console.WriteLine("Enter details for 3 persons:");
-           
-           for (int i = 0; i < persons.Length; i++)
-           {
-               Console.WriteLine($"Enter details for person {i + 1}:");
-               for (int j = 0; j <= 1;)
-               {
-                   Console.Write("Name: ");
-                   string? name = Console.ReadLine();
-           
-                   Console.Write("Age: ");
-                   bool isAgeValid = int.TryParse(Console.ReadLine(), out int age);
-           
-                   if (isAgeValid && name?.Length > 0)
-                   {
-                       persons[i] = new Person(age, name);
-                       j++;
-                   }
-                   else
-                   {
-                       Console.WriteLine($"Invalid input. Please enter a valid name and age For Person {i + 1} again.");
-                   }
-               }
-           
+            Person[] persons = new Person[3];
+
+            Console.WriteLine("Enter details for 3 persons:");
+
+            for (int i = 0; i < persons.Length; i++)
+            {
+                Console.WriteLine($"Enter details for person {i + 1}:");
+                for (int j = 0; j < 1;)
+                {
+                    Console.Write("Name: ");
+                    string? name = Console.ReadLine();
+
+                    Console.Write("Age: ");
+                    bool isAgeValid = int.TryParse(Console.ReadLine(), out int age);
+
+                    if (isAgeValid && name?.Length > 0)
+                    {
+                        persons[i] = new Person(age, name);
+                        j++;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Invalid input. Please enter a valid name and age For Person {i + 1} again.");
+                    }
+                }
+
             }
 
             Console.Clear();
-            
+
             for (int i = 0; i < persons.Length; i++)
             {
                 Console.WriteLine($"Person {i + 1}\nName: {persons[i].Name} , Age: {persons[i].Age}");
@@ -136,6 +173,47 @@ namespace Assignment
 
             #endregion
 
+
+            #region Q03
+            // Create a struct called "Person" with properties "Name" and "Age". 
+            // Write a C# program that takes details of 3 persons as input from
+            // the user and displays the name and age of the oldest person.
+
+            Person03[] persons03 = new Person03[3];
+
+            Console.WriteLine("Enter details for 3 persons:");
+
+            for (int i = 0; i < persons03.Length; i++)
+            {
+                Console.WriteLine($"Enter details for person {i + 1}:");
+                for (int j = 0; j < 1;)
+                {
+                    Console.Write("Name: ");
+                    string? name = Console.ReadLine();
+
+                    Console.Write("Age: ");
+                    bool isAgeValid = int.TryParse(Console.ReadLine(), out int age);
+
+                    if (isAgeValid && name?.Length > 0)
+                    {
+                        persons03[i] = new Person03(age, name);
+                        j++;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Invalid input. Please enter a valid name and age For Person {i + 1} again.");
+                    }
+                }
+            }
+
+            Person03 temp = new Person03();
+            Person03 oldest = temp.GetOldest(persons03);
+
+            Console.WriteLine($"The Oldest Person : \nName : {oldest.Name} , Age : {oldest.Age}");
+
+
+
+            #endregion
         }
     }
 }
